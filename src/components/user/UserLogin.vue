@@ -49,6 +49,7 @@ import { useToast } from 'primevue/usetoast'
 import { useRouter } from "vue-router";
 import Cookies from "js-cookie";
 import { ref } from "vue";
+import { useUserStore } from '@/stores/user'
 
 const email = ref("");
 const password = ref("");
@@ -56,6 +57,7 @@ const password = ref("");
 const isLoading = ref(false);
 const errorMessage = ref(null);
 
+const userStore = useUserStore()
 const router = useRouter();
 const toast = useToast();
 
@@ -81,6 +83,8 @@ const login = async () => {
 
             // expires in 7 days
             Cookies.set("authToken", result.token, { expires: 7, secure: true, sameSite: "Strict" });
+
+            await userStore.fetchUser();
 
             toast.add({
                 severity: 'success',

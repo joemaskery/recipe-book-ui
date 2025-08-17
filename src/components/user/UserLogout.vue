@@ -7,13 +7,16 @@ import Cookies from "js-cookie";
 import { useRouter } from "vue-router";
 import { Button } from "primevue";
 import { useToast } from "primevue";
+import { useUserStore } from '@/stores/user';
 
 const router = useRouter();
 const toast = useToast();
-
+const userStore = useUserStore();
 
 const logout = () => {
     Cookies.remove("authToken");
+
+    userStore.logout();
 
     toast.add({
         severity: 'success',
