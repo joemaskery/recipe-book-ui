@@ -9,7 +9,11 @@
 
         <template #end>
             <div>
-                <Avatar icon="pi pi-user" shape="circle" />
+                <router-link v-if="userStore.user" to="/user">
+                    <Avatar :image="userStore.avatarUrl" shape="circle" class="user-avatar-border" />
+                </router-link>
+
+                <Avatar v-else icon="pi pi-user" shape="circle" />
             </div>
         </template>
     </Menubar>
@@ -19,6 +23,9 @@
 import { ref } from 'vue'
 import { Menubar } from 'primevue';
 import Avatar from 'primevue/avatar';
+import { useUserStore } from '@/stores/user'
+
+const userStore = useUserStore();
 
 const items = ref([
     {
@@ -57,5 +64,11 @@ const items = ref([
 .logo-text {
     font-weight: bold;
     font-size: 1.2rem;
+}
+
+.user-avatar-border {
+    border: 2px solid #42b983;
+    padding: 2px;
+    border-radius: 50%;
 }
 </style>

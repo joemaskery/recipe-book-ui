@@ -7,8 +7,12 @@ import Aura from '@primevue/themes/aura'
 import { ToastService } from 'primevue'
 import 'primeicons/primeicons.css'
 import App from './App.vue'
+import { useUserStore } from './stores/user'
+import { createPinia } from 'pinia'
 
 const app = createApp(App);
+const pinia = createPinia()
+app.use(pinia)
 app.use(router);
 app.use(ToastService);
 app.use(PrimeVue, {
@@ -17,3 +21,6 @@ app.use(PrimeVue, {
     },
 });
 app.mount('#app')
+
+const userStore = useUserStore()
+userStore.fetchUser()

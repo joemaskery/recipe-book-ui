@@ -2,7 +2,7 @@
     <div class="user-summary-container">
         <Card style="width: 350px">
             <template #header>
-                <img alt="user avatar" src="@/assets/chef_male.png" class="user-avatar" />
+                <img alt="user avatar" :src="avatarLink" class="user-avatar" />
             </template>
             <template #title>
                 {{ user.firstName }} {{ user.secondName }}
@@ -40,10 +40,13 @@ const user = ref({
     firstName: '',
     secondName: '',
     email: '',
+    avatar: '',
     dateJoined: '',
     recipesNumber: '',
     ingredientsNumber: ''
 });
+
+const avatarLink = ref("");
 
 onMounted(async () => {
     try {
@@ -62,10 +65,14 @@ onMounted(async () => {
             firstName: data.firstName,
             secondName: data.secondName,
             email: data.email,
+            avatar: data.avatar,
             dateJoined: data.stats.dateJoined,
             recipesNumber: data.stats.recipes,
             ingredientsNumber: data.stats.ingredients
         };
+
+        const avatarFile = user.value.avatar ? user.value.avatar : "chef_unknown";
+        avatarLink.value = new URL(`../../assets/${avatarFile}.png`, import.meta.url).href;
 
     } catch (error) {
         Cookies.remove("authToken");
@@ -98,10 +105,7 @@ onMounted(async () => {
 
 .user-avatar {
     width: 100%;
-    /* fills the card width */
     max-height: 150px;
-    /* keeps it from being too tall */
     object-fit: contain;
-    /* preserves aspect ratio without cropping */
 }
 </style>
