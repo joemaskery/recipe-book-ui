@@ -65,14 +65,13 @@ onMounted(async () => {
             firstName: data.firstName,
             secondName: data.secondName,
             email: data.email,
-            avatar: data.avatar,
+            avatar: data.avatar || 'chef_unknown',
             dateJoined: data.stats.dateJoined,
             recipesNumber: data.stats.recipes,
             ingredientsNumber: data.stats.ingredients
         };
 
-        const avatarFile = user.value.avatar ? user.value.avatar : "chef_unknown";
-        avatarLink.value = new URL(`../../assets/${avatarFile}.png`, import.meta.url).href;
+        avatarLink.value = new URL(`../../assets/${user.value.avatar}.png`, import.meta.url).href;
 
     } catch (error) {
         Cookies.remove("authToken");
