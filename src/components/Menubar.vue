@@ -38,7 +38,10 @@ const items = ref([
         icon: 'pi pi-book',
         items: [
             { label: 'Create' },
-            { label: 'View' }
+            {
+                label: 'View',
+                url: '/recipe/all'
+            }
         ]
     },
     {
