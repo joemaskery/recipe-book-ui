@@ -4,13 +4,15 @@ import UserLogin from "./components/user/UserLogin.vue";
 import UserRegister from "./components/user/UserRegister.vue";
 import UserSummary from "./components/user/UserSummary.vue";
 import RecipeList from "./components/recipe/RecipeList.vue";
+import RecipeDetails from "./components/recipe/RecipeDetails.vue";
 
 const routes = [
     { path: "/", redirect: "/user" },
     { path: "/login", component: UserLogin },
     { path: "/register", component: UserRegister },
     { path: "/user", component: UserSummary, meta: { requiresAuth: true } },
-    { path: "/recipe/all", component: RecipeList, meta: { requiresAuth: true } }
+    { path: "/recipe/all", component: RecipeList, meta: { requiresAuth: true } },
+    { path: "/recipe/:recipeId", component: RecipeDetails, props: true, meta: { requiresAuth: true } }
 ];
 
 const router = createRouter({
