@@ -34,7 +34,6 @@ body,
 .main-content {
   margin-top: 60px;
   height: calc(100vh - 60px);
-  overflow-y: auto;
   padding: 1rem;
   display: flex;
   flex-direction: column;
