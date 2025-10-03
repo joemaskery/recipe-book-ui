@@ -62,7 +62,13 @@
                         {{ isLoading ? 'Creating Account...' : 'Create Account' }}
                     </Button>
 
-                    <Message v-if="errorMessage" severity="error">{{ errorMessage }}</Message>
+                    <Message v-if="errorMessages && errorMessages.length" severity="error">
+                        <ul>
+                            <li v-for="(msg, index) in errorMessages" :key="index">
+                                {{ msg }}
+                            </li>
+                        </ul>
+                    </Message>
 
                 </form>
             </template>
@@ -94,14 +100,14 @@ const confirmPassword = ref('');
 const selectedAvatar = ref('chef_male');
 
 const isLoading = ref(false);
-const errorMessage = ref('');
+const errorMessages = ref([]);
 
 const router = useRouter();
 const toast = useToast();
 
 const registerUser = async () => {
 
-    errorMessage.value = '';
+    errorMessages.value = [];
     isLoading.value = true;
 
     try {
@@ -132,14 +138,14 @@ const registerUser = async () => {
         } else if (response.status === 400) {
             const result = await response.json();
 
-            errorMessage.value = result.error;
+            errorMessages.value = result.errors;
 
         } else {
-            errorMessage.value = 'Account creation failed. Please try again.';
+            errorMessages.value = 'Account creation failed. Please try again.';
         }
 
     } catch (error) {
-        errorMessage.value = 'Account creation failed. Please try again.';
+        errorMessages.value = 'Account creation failed. Please try again.';
 
     } finally {
         isLoading.value = false;

@@ -5,6 +5,7 @@ import UserRegister from "./components/user/UserRegister.vue";
 import UserSummary from "./components/user/UserSummary.vue";
 import RecipeList from "./components/recipe/RecipeList.vue";
 import RecipeDetails from "./components/recipe/RecipeDetails.vue";
+import CreateRecipe from "./components/recipe/CreateRecipe.vue";
 
 const routes = [
     { path: "/", redirect: "/user" },
@@ -12,7 +13,8 @@ const routes = [
     { path: "/register", component: UserRegister },
     { path: "/user", component: UserSummary, meta: { requiresAuth: true } },
     { path: "/recipe/all", component: RecipeList, meta: { requiresAuth: true } },
-    { path: "/recipe/:recipeId", component: RecipeDetails, props: true, meta: { requiresAuth: true } }
+    { path: "/recipe/:recipeId", component: RecipeDetails, props: true, meta: { requiresAuth: true } },
+    { path: "/recipe/create", component: CreateRecipe, meta: { requiresAuth: true } }
 ];
 
 const router = createRouter({
