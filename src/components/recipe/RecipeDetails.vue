@@ -16,7 +16,7 @@
             <template #content>
                 {{ recipe.description }}
 
-                <Accordion>
+                <Accordion :multiple="true">
                     <AccordionPanel value="0">
                         <AccordionHeader>Ingredients</AccordionHeader>
                         <AccordionContent>
