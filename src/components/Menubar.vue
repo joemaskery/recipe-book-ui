@@ -49,7 +49,17 @@ const items = ref([
     },
     {
         label: 'Shopping Lists',
-        icon: 'pi pi-shopping-cart'
+        icon: 'pi pi-shopping-cart',
+        items: [
+            {
+                label: 'Create',
+                url: '/shopping-list/create'
+            },
+            {
+                label: 'View',
+                url: '/shopping-list/all'
+            }
+        ]
     }
 ])
 </script>
